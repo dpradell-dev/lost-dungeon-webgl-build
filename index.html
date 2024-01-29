@@ -43,7 +43,7 @@
       function CallExecuteReCaptcha(action, callback) {
         grecaptcha.ready(function() {
           grecaptcha.execute('6LfBll8pAAAAACKqbXw53U5j__xgBD4OFBeR4rXo', { action: action }).then(function(token) {
-            SendMessage("ReCaptchaController", callback, token);
+            unityInstance.SendMessage("ReCaptchaController", callback, token);
           });
         });
       }

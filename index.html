@@ -8,6 +8,7 @@
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=960 height=600 tabindex="-1" style="width: 960px; height: 600px; background: #231F20"></canvas>
     <script src="Build/lost-dungeon-webgl-build.loader.js"></script>
+    <!-- Move the recaptcha script here -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LfBll8pAAAAACKqbXw53U5j__xgBD4OFBeR4rXo"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -37,17 +38,15 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
-    </script>
-    <script>
+
       // Call the provided Unity callback function with the obtained token
       function CallExecuteReCaptcha(action, callback) {
-          grecaptcha.ready(function() {
-              grecaptcha.execute('6LfBll8pAAAAACKqbXw53U5j__xgBD4OFBeR4rXo', { action: action }).then(function(token) {
-                  unityInstance.SendMessage("ReCaptchaController", callback, token);
-              });
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LfBll8pAAAAACKqbXw53U5j__xgBD4OFBeR4rXo', { action: action }).then(function(token) {
+            unityInstance.SendMessage("ReCaptchaController", callback, token);
           });
+        });
       }
-  </script>
-  </script>
+    </script>
   </body>
 </html>
